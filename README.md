@@ -85,7 +85,7 @@ Actions.repeat(
 		Actions.moveTo(sprite, 0, 0, 1, Interpolations.linear)
 	)
 ).play();</pre></td>
-			<td>![pixi-actions-example1](https://user-images.githubusercontent.com/4903502/111069490-95b8a400-84cd-11eb-86ea-790cd7d8598c.gif)</td>
+			<td><img alt="pixi-actions-example1" src="https://user-images.githubusercontent.com/4903502/111069490-95b8a400-84cd-11eb-86ea-790cd7d8598c.gif"></td>
 		</tr>
 		<tr>
 			<td><pre lang="json">
@@ -103,8 +103,7 @@ Actions.repeat(
 		Actions.moveTo(sprite, 0, 0, 0),
 	)
 ).play();</pre></td>
-			<td>![pixi-actions-example2](https://user-images.githubusercontent.com/4903502/111069497-9bae8500-84cd-11eb-944c-d34d27502772.gif)
-</td>
+			<td><img alt="pixi-actions-example2" src="https://user-images.githubusercontent.com/4903502/111069497-9bae8500-84cd-11eb-944c-d34d27502772.gif"><br><i>Please excuse the poor gif quality!</i></td>
 		</tr>
 	</tbody>
 </table>
