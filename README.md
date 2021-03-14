@@ -7,7 +7,7 @@ The easiest way to see what they do is to look at the [examples](#examples).
 Note: in this document I will refer to DisplayObjects as _nodes_ for brevity.
 
 
-## Usage
+## Usage
 
 Install via npm:
 
@@ -63,7 +63,7 @@ See the table below for a full list of all the available actions.
 
 Interpolation always defaults to pow2out if omitted. Time is in the same units supplied to `Actions.tick`.
 
-## Examples
+## Examples
 
 These examples all assume existence of a node `sprite` which has been added to the stage. For example, created by `const sprite = PIXI.Sprite.from(...);`.
 
@@ -85,7 +85,7 @@ Actions.repeat(
 		Actions.moveTo(sprite, 0, 0, 1, Interpolations.linear)
 	)
 ).play();</pre></td>
-			<td>(Coming)</td>
+			<td>![pixi-actions-example1](https://user-images.githubusercontent.com/4903502/111069490-95b8a400-84cd-11eb-86ea-790cd7d8598c.gif)</td>
 		</tr>
 		<tr>
 			<td><pre lang="json">
@@ -103,12 +103,13 @@ Actions.repeat(
 		Actions.moveTo(sprite, 0, 0, 0),
 	)
 ).play();</pre></td>
-			<td>(Coming)</td>
+			<td>![pixi-actions-example2](https://user-images.githubusercontent.com/4903502/111069497-9bae8500-84cd-11eb-944c-d34d27502772.gif)
+</td>
 		</tr>
 	</tbody>
 </table>
 
-## Gotchas
+## Gotchas
 
 Actions are automatically stopped if the target node has no parent. However, if you remove a more distant ancestor than the parent from the stage, then the action will not be stopped, and further, that action keeps a reference to the target. That means the target cannot be garbage collected whilst the action runs.
 
