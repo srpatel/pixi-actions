@@ -27,5 +27,6 @@ export default class Sequence extends Action {
 		for (const i in this.actions) {
 			this.actions[i].reset();
 		}
+		return this;
 	}
 };

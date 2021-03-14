@@ -9,22 +9,26 @@ export default abstract class Action {
 	
 	queue(after: Action) {
 		this.queued.push(after);
+		return this;
 	}
 	
 	play() {
 		Actions.play(this);
+		return this;
 	}
 	
 	pause() {
 		Actions.pause(this);
+		return this;
 	}
 	
 	reset() {
 		this.done = false;
+		return this;
 	}
 	
 	stop() {
-		this.pause();
-		this.reset();
+		this.pause().reset();
+		return this;
 	}
 };

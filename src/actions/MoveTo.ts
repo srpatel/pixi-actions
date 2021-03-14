@@ -45,5 +45,6 @@ export default class MoveTo extends TargetedAction {
 	reset() {
 		super.reset();
 		this.time = 0;
+		return this;
 	}
 };

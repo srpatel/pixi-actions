@@ -37,5 +37,6 @@ export default class FadeTo extends TargetedAction {
 	reset() {
 		super.reset();
 		this.time = 0;
+		return this;
 	}
 };

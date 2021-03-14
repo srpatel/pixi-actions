@@ -35,5 +35,6 @@ export default class Parallel extends Action {
 		for (const i in this.actions) {
 			this.actions[i].reset();
 		}
+		return this;
 	}
 };

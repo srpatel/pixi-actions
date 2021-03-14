@@ -30,5 +30,6 @@ export default class Repeat extends Action {
 	reset() {
 		super.reset();
 		this.action.reset();
+		return this;
 	}
 };

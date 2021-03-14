@@ -37,5 +37,6 @@ export default class RotateTo extends TargetedAction {
 	reset() {
 		super.reset();
 		this.time = 0;
+		return this;
 	}
 };

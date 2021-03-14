@@ -45,5 +45,6 @@ export default class ScaleTo extends TargetedAction {
 	reset() {
 		super.reset();
 		this.time = 0;
+		return this;
 	}
 };

@@ -19,5 +19,6 @@ export default class Delay extends Action {
 	reset() {
 		super.reset();
 		this.time = 0;
+		return this;
 	}
 };
