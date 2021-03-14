@@ -8,12 +8,8 @@ export default class Repeat extends Action {
 	times: number;
 	n: number = 0;
 	
-	constructor(
-		target: PIXI.DisplayObject,
-		action: Action,
-		times: number = -1)
-	{
-		super(target);
+	constructor(action: Action, times: number = -1) {
+		super();
 		this.action = action;
 		this.times = times;
 	}

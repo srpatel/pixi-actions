@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js';
 import Action from './actions/Action';
+import TargetedAction from './actions/TargetedAction';
 import Interpolation from './Interpolation';
 import Interpolations from './Interpolations';
 
@@ -49,7 +50,6 @@ export default class Actions {
 		interpolation: Interpolation = Interpolations.pow2out): Action
 	{
 		return Actions.sequence(
-			target,
 			Actions.fadeOut(target, seconds, interpolation),
 			Actions.remove(target)
 		);
@@ -63,27 +63,23 @@ export default class Actions {
 		return Actions.fadeTo(target, 1, seconds, interpolation);
 	}
 	
-	static remove(
-		target: PIXI.DisplayObject): Action
-	{
-		return Actions.runFunc(target, () => {
+	static remove(target: PIXI.DisplayObject): Action {
+		return Actions.runFunc(() => {
 			if (target.parent != null)
 				target.parent.removeChild(target);
 		});
 	}
 	
 	static delay(
-		target: PIXI.DisplayObject, 
 		seconds: number): Action
 	{
-		return new Delay(target, seconds);
+		return new Delay(seconds);
 	}
 	
 	static runFunc(
-		target: PIXI.DisplayObject, 
 		fn: () => void): Action
 	{
-		return new RunFunc(target, fn);
+		return new RunFunc(fn);
 	}
 	
 	static scaleTo(
@@ -106,39 +102,58 @@ export default class Actions {
 	}
 	
 	static sequence(
-		target: PIXI.DisplayObject, 
 		...actions: Array<Action>): Action
 	{
-		return new Sequence(target, ...actions);
+		return new Sequence(...actions);
 	}
 	
 	static parallel(
-		target: PIXI.DisplayObject, 
 		...actions: Array<Action>): Action
 	{
-		return new Parallel(target, ...actions);
+		return new Parallel(...actions);
 	}
 	
 	static repeat(
-		target: PIXI.DisplayObject, 
 		action: Action,
 		times: number = -1): Action
 	{
-		return new Repeat(target, action, times);
+		return new Repeat(action, times);
 	}
 	
 	static play(action: Action) {
 		this.actions.push(action);
 	}
 	
+	static pause(action: Action) {
+		const index = this.actions.indexOf(action);
+		if (index >= 0) {
+			this.actions.splice(index, 1);
+		}
+	}
+	
+	static clear(target: PIXI.DisplayObject = null) {
+		for (let i = this.actions.length - 1; i >= 0; i--) {
+			const action: Action = this.actions[i];
+			
+			if (target == null ||
+				(action instanceof TargetedAction && action.target == target))
+			{
+				this.actions.splice(i, 1);
+			}
+		}
+	}
+	
 	static tick(delta: number) {
 		for (let i = this.actions.length - 1; i >= 0; i--) {
 			const action: Action = this.actions[i];
 			
-			// If action is null, or has no parent, we remove the action
-			if (action.target == null || ! action.target.parent) {
-				this.actions.splice(i, 1);
-				continue;
+			if (action instanceof TargetedAction) {
+				// If the action is targeted, but has no target, we remove the action
+				// We also remove the action if the target has no parent to allow DisplayObjects outside the tree to be gc'd.
+				if (action.target == null || ! action.target.parent) {
+					this.actions.splice(i, 1);
+					continue;
+				}
 			}
 			
 			// Otherwise, we tick the action
@@ -151,6 +166,7 @@ export default class Actions {
 				for (let j = 0; j < action.queued.length; j++) {
 					Actions.play(action.queued[j]);
 				}
+				action.queued = [];
 			}
 		}
 	}

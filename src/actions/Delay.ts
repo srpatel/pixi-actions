@@ -5,11 +5,8 @@ export default class Delay extends Action {
 	time: number = 0;
 	seconds: number;
 	
-	constructor(
-		target: PIXI.DisplayObject,
-		seconds: number)
-	{
-		super(target);
+	constructor(seconds: number) {
+		super();
 		this.seconds = seconds;
 	}
 	

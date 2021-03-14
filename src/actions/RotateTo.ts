@@ -1,9 +1,9 @@
 import * as PIXI from 'pixi.js';
-import Action from './Action';
+import TargetedAction from './TargetedAction';
 import Interpolation from '../Interpolation';
 import Interpolations from '../Interpolations';
 
-export default class RotateTo extends Action {
+export default class RotateTo extends TargetedAction {
 	time: number = 0;
 	seconds: number;
 	interpolation: Interpolation;

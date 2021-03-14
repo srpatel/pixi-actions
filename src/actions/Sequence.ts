@@ -5,11 +5,8 @@ export default class Sequence extends Action {
 	index: number = 0;
 	actions: Array<Action>;
 	
-	constructor(
-		target: PIXI.DisplayObject,
-		...actions: Array<Action> )
-	{
-		super(target);
+	constructor(...actions: Array<Action>) {
+		super();
 		this.actions = actions;
 	}
 	
