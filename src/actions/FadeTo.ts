@@ -4,8 +4,6 @@ import Interpolation from '../Interpolation';
 import Interpolations from '../Interpolations';
 
 export default class FadeTo extends TargetedAction {
-	time: number = 0;
-	seconds: number;
 	interpolation: Interpolation;
 	startAlpha: number;
 	alpha: number;
@@ -16,8 +14,7 @@ export default class FadeTo extends TargetedAction {
 		seconds: number, 
 		interpolation: Interpolation = Interpolations.linear)
 	{
-		super(target);
-		this.seconds = seconds;
+		super(target, seconds);
 		this.interpolation = interpolation;
 		this.alpha = alpha;
 	}
@@ -29,9 +26,9 @@ export default class FadeTo extends TargetedAction {
 		
 		this.time += delta;
 		
-		const factor: number = this.interpolation(Math.min(1, this.time/this.seconds));
+		const factor: number = this.interpolation(this.timeDistance);
 		this.target.alpha = this.startAlpha + (this.alpha - this.startAlpha) * factor;
-		return factor >= 1;
+		return this.timeDistance >= 1;
 	}
 	
 	reset() {
