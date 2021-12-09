@@ -16,8 +16,7 @@ export default class RotateTo extends TargetedAction {
 		seconds: number, 
 		interpolation: Interpolation = Interpolations.linear)
 	{
-		super(target);
-		this.seconds = seconds;
+		super(target, seconds);
 		this.interpolation = interpolation;
 		this.rotation = rotation;
 	}
@@ -29,9 +28,9 @@ export default class RotateTo extends TargetedAction {
 		
 		this.time += delta;
 		
-		const factor: number = this.interpolation(Math.min(1, this.time/this.seconds));
+		const factor: number = this.interpolation(this.timeDistance);
 		this.target.rotation = this.startRotation + (this.rotation - this.startRotation) * factor;
-		return factor >= 1;
+		return this.timeDistance >= 1;
 	}
 	
 	reset() {

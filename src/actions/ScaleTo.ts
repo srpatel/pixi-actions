@@ -4,8 +4,6 @@ import Interpolation from '../Interpolation';
 import Interpolations from '../Interpolations';
 
 export default class ScaleTo extends TargetedAction {
-	time: number = 0;
-	seconds: number;
 	interpolation: Interpolation;
 	startX: number;
 	startY: number;
@@ -19,8 +17,7 @@ export default class ScaleTo extends TargetedAction {
 		seconds: number, 
 		interpolation: Interpolation = Interpolations.linear)
 	{
-		super(target);
-		this.seconds = seconds;
+		super(target, seconds);
 		this.interpolation = interpolation;
 		this.x = x;
 		this.y = y;
@@ -34,12 +31,12 @@ export default class ScaleTo extends TargetedAction {
 		
 		this.time += delta;
 		
-		const factor: number = this.interpolation(Math.min(1, this.time/this.seconds));
+		const factor: number = this.interpolation(this.timeDistance);
 		this.target.scale.set(
 			this.startX + (this.x - this.startX) * factor,
 			this.startY + (this.y - this.startY) * factor,
 		);
-		return factor >= 1;
+		return this.timeDistance >= 1;
 	}
 	
 	reset() {
