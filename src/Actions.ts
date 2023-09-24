@@ -13,6 +13,7 @@ import Repeat from './actions/Repeat';
 import FadeTo from './actions/FadeTo';
 import Delay from './actions/Delay';
 import RunFunc from './actions/RunFunc';
+import TintTo from './actions/TintTo';
 
 export default class Actions {
 	static actions: Array<Action> = [];
@@ -99,6 +100,15 @@ export default class Actions {
 		interpolation: Interpolation = Interpolations.pow2out): Action
 	{
 		return new RotateTo(target, rotation, seconds, interpolation);
+	}
+	
+	static tintTo(
+		target: PIXI.DisplayObject, 
+		tint: number,
+		seconds: number, 
+		interpolation: Interpolation = Interpolations.pow2out): Action
+	{
+		return new TintTo(target, tint, seconds, interpolation);
 	}
 	
 	static sequence(
