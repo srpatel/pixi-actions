@@ -55,6 +55,7 @@ See the table below for a full list of all the available actions.
 | `Actions.moveTo( target, x, y, time, interpolation ); ` | Animate a node to a specified position. |
 | `Actions.scaleTo( target, x, y, time, interpolation ); ` | Animate a node's scale to specified values. |
 | `Actions.rotateTo( target, rotation, time, interpolation ); ` | Animate a node's rotation to a specified value. Note that this uses the `rotation` property, which is in _radians_. There is an `angle` property which uses degrees, but there is no Action for it (yet!). |
+| `Actions.tintTo( target, colour, time, interpolation ); ` | Interpolates the target's tint RGB values to the target colour's RGB. |
 | `Actions.fadeTo( target, alpha, time, interpolation ); ` | Animate a node's alpha to a specified value. |
 | `Actions.fadeOut( target, time, interpolation ); ` | Animate a node's alpha to 0. |
 | `Actions.fadeIn( target, time, interpolation ); ` | Animate a node's alpha to 1. |
@@ -66,7 +67,7 @@ See the table below for a full list of all the available actions.
 | `Actions.sequence( ...actions ); ` | Perform the specified actions one after the other. |
 | `Actions.parallel( ...actions ); ` | Perform the specified actions in parallel. This action won't finish until _all_ of its child actions have finished. |
 
-Interpolation always defaults to pow2out if omitted. Time is in the same units supplied to `Actions.tick`.
+Interpolation always defaults to `pow2out` if omitted. Time is in the same units supplied to `Actions.tick`.
 
 ## Examples
 
@@ -81,7 +82,7 @@ These examples all assume existence of a node `sprite` which has been added to t
 	</thead>
 	<tbody>
 		<tr>
-			<td><pre lang="json">
+			<td><pre lang="js">
 Actions.repeat(
 	Actions.sequence(
 		Actions.moveTo(sprite, 100, 0, 1, Interpolations.linear),
@@ -93,7 +94,7 @@ Actions.repeat(
 			<td><img alt="pixi-actions-example1" src="https://user-images.githubusercontent.com/4903502/111069490-95b8a400-84cd-11eb-86ea-790cd7d8598c.gif"></td>
 		</tr>
 		<tr>
-			<td><pre lang="json">
+			<td><pre lang="js">
 Actions.repeat(
 	Actions.sequence(
 		Actions.parallel(
