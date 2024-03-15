@@ -1,6 +1,6 @@
 {
   "name": "pixi-actions",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "An Actions system for easy chainable animations of DisplayObjects.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
     "build": "tsc --build",
     "clean": "tsc --build --clean"
   },
-  "repository": "https://github.com/srpatel/pixi-actions",
+  "repository": "github:srpatel/pixi-actions",
   "author": "sunil patel <sunil@xikka.com>",
   "license": "MIT",
   "keywords": [
@@ -16,10 +16,11 @@
     "pixijs"
   ],
   "peerDependencies": {
-    "pixi.js": "^7.0.0"
+    "pixi.js": ">7.0.0"
   },
   "devDependencies": {
-    "pixi.js": "^7.0.0",
-    "typescript": "^4.2.3"
+    "@types/css-font-loading-module": "^0.0.13",
+    "pixi.js": ">7.0.0",
+    "typescript": "~5.1.3"
   }
 }

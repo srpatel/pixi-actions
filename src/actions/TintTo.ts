@@ -6,8 +6,9 @@ import Interpolations from '../Interpolations';
 export default class TintTo extends TargetedAction {
 	interpolation: Interpolation;
 	tintableTarget: PIXI.Sprite | PIXI.BitmapText | PIXI.Graphics | PIXI.Mesh = null;
-	startTint: Array<number> | Float32Array;
-	tint: Array<number> | Float32Array;
+	startTint: PIXI.Color;
+	tint: PIXI.Color;
+	currentTint = new PIXI.Color();
 	
 	constructor(
 		target: PIXI.DisplayObject,
@@ -17,7 +18,7 @@ export default class TintTo extends TargetedAction {
 	{
 		super(target, seconds);
 		this.interpolation = interpolation;
-		this.tint = PIXI.utils.hex2rgb(tint);
+		this.tint = new PIXI.Color(tint);
 		
 		if (this.target instanceof PIXI.Sprite) {
 			this.tintableTarget = this.target;
@@ -30,17 +31,19 @@ export default class TintTo extends TargetedAction {
 		}
 
 		if (this.time === 0) {
-			this.startTint = PIXI.utils.hex2rgb(this.tintableTarget.tint);
+			this.startTint = new PIXI.Color(this.tintableTarget.tint);
 		}
 		
 		this.time += delta;
 		
 		const factor: number = this.interpolation(this.timeDistance);
-		const currentTint = [0, 0, 0];
-		for (let i = 0; i < currentTint.length; i++) {
-			currentTint[i] = this.startTint[i] + (this.tint[i] - this.startTint[i]) * factor;
-		}
-		this.tintableTarget.tint = PIXI.utils.rgb2hex(currentTint);
+
+		this.currentTint.setValue([
+			this.startTint.red + (this.tint.red - this.startTint.red) * factor,
+			this.startTint.green + (this.tint.green - this.startTint.green) * factor,
+			this.startTint.blue + (this.tint.blue - this.startTint.blue) * factor
+		]);
+		this.tintableTarget.tint = this.currentTint;
 		return this.timeDistance >= 1;
 	}
 	

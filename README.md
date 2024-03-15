@@ -20,12 +20,17 @@ You can then import the classes you need:
 	import { Actions } from 'pixi-actions';
 	import { Actions, Interpolations } from 'pixi-actions';
 
-Register a ticker with your PIXI app:
+Register a ticker with your PIXI app (be sure to use the correct form for your version of PixiJS):
 
 	import { Actions } from 'pixi-actions';
 	
 	let app = new PIXI.Application({ ... });
+
+	// PixiJS v7
 	app.ticker.add((delta) => Actions.tick(delta/60));
+
+	// PixiJS v8
+	app.ticker.add((tick) => Actions.tick(tick.deltaTime/60));
 
 Note that the delta supplied to the ticker function is in frames. If you want to use seconds instead (recommended), you should divide by your frames per second.
 
