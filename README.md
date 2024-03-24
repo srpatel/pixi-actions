@@ -6,6 +6,7 @@ The easiest way to see what they do is to look at the [examples](#examples).
 
 Note: in this document I will refer to DisplayObjects as _nodes_ for brevity.
 
+If you like this, you may like my other PixiJS library [pixi-table-layout](https://github.com/srpatel/pixi-table-layout).
 
 ## Usage
 
