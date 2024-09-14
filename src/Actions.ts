@@ -15,6 +15,7 @@ import Delay from './actions/Delay';
 import RunFunc from './actions/RunFunc';
 import TintTo from './actions/TintTo';
 
+
 export default class Actions {
 	static actions: Array<Action> = [];
 	
@@ -100,6 +101,15 @@ export default class Actions {
 		interpolation: Interpolation = Interpolations.pow2out): Action
 	{
 		return new RotateTo(target, rotation, seconds, interpolation);
+	}
+
+	static angleTo(
+		target: PIXI.DisplayObject,
+		degrees: number,
+		seconds: number,
+		interpolation: Interpolation = Interpolations.pow2out): Action
+	{
+		return Actions.rotateTo(target, PIXI.DEG_TO_RAD * degrees, seconds, interpolation);
 	}
 	
 	static tintTo(
