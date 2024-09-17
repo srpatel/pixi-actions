@@ -8,7 +8,7 @@ export default class RunFunc extends Action {
 		this.fn = fn;
 	}
 
-	tick(delta: number): boolean {
+	tick(_: number): boolean {
 		this.fn.call(this);
 		return true;
 	}
