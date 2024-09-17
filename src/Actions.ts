@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js';
 import Action from './actions/Action';
 import TargetedAction from './actions/TargetedAction';
 import Interpolation from './Interpolation';
@@ -97,6 +98,15 @@ export default class Actions {
 		interpolation: Interpolation = Interpolations.pow2out
 	): Action {
 		return new RotateTo(target, rotation, seconds, interpolation);
+	}
+
+	static angleTo(
+		target: Target,
+		degrees: number,
+		seconds: number,
+		interpolation: Interpolation = Interpolations.pow2out): Action
+	{
+		return Actions.rotateTo(target, PIXI.DEG_TO_RAD * degrees, seconds, interpolation);
 	}
 
 	static tintTo(
