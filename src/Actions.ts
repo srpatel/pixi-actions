@@ -104,9 +104,14 @@ export default class Actions {
 		target: Target,
 		degrees: number,
 		seconds: number,
-		interpolation: Interpolation = Interpolations.pow2out): Action
-	{
-		return Actions.rotateTo(target, PIXI.DEG_TO_RAD * degrees, seconds, interpolation);
+		interpolation: Interpolation = Interpolations.pow2out
+	): Action {
+		return Actions.rotateTo(
+			target,
+			PIXI.DEG_TO_RAD * degrees,
+			seconds,
+			interpolation
+		);
 	}
 
 	static tintTo(
@@ -141,12 +146,12 @@ export default class Actions {
 		}
 	}
 
-	static clear(target: Target = null) {
+	static clear(target?: Target) {
 		for (let i = this.actions.length - 1; i >= 0; i--) {
 			const action: Action = this.actions[i];
 
 			if (
-				target == null ||
+				!target ||
 				(action instanceof TargetedAction && action.target == target)
 			) {
 				this.actions.splice(i, 1);

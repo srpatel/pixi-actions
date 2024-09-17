@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 
 import Action from './Action';
 
-export type Target = PIXI.DisplayObject | PIXI.Container;
+export type Target = PIXI.Container;
 export default abstract class TargetedAction extends Action {
 	time: number = 0;
 	seconds: number;

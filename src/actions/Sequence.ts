@@ -17,6 +17,7 @@ export default class Sequence extends Action {
 		if (this.actions[this.index].tick(delta)) {
 			this.index++;
 		}
+		return false;
 	}
 
 	reset() {
