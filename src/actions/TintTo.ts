@@ -7,7 +7,7 @@ export type TintableTarget = PIXI.Sprite | PIXI.BitmapText | PIXI.Graphics;
 
 export default class TintTo extends TargetedAction {
 	interpolation: Interpolation;
-	tintableTarget: TintableTarget = null;
+	tintableTarget: TintableTarget;
 	startTint: PIXI.Color;
 	tint: PIXI.Color;
 	currentTint = new PIXI.Color();
@@ -21,10 +21,7 @@ export default class TintTo extends TargetedAction {
 		super(target, seconds);
 		this.interpolation = interpolation;
 		this.tint = new PIXI.Color(tint);
-
-		if (this.target instanceof PIXI.Sprite) {
-			this.tintableTarget = this.target;
-		}
+		this.tintableTarget = target;
 	}
 
 	tick(delta: number): boolean {

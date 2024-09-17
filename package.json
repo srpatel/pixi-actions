@@ -1,6 +1,6 @@
 {
 	"name": "pixi-actions",
-	"version": "1.2.0",
+	"version": "1.2.2",
 	"description": "An Actions system for easy chainable animations of DisplayObjects.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
