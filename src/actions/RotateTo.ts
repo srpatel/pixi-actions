@@ -5,7 +5,7 @@ import type { Target } from "./TargetedAction";
 
 export default class RotateTo extends TargetedAction {
 	time: number = 0;
-	seconds: number;
+	declare seconds: number;
 	interpolation: Interpolation;
 	startRotation: number;
 	rotation: number;
@@ -19,6 +19,7 @@ export default class RotateTo extends TargetedAction {
 		super(target, seconds);
 		this.interpolation = interpolation;
 		this.rotation = rotation;
+		this.startRotation = target.rotation;
 	}
 
 	tick(delta: number): boolean {

@@ -17,6 +17,7 @@ export default class FadeTo extends TargetedAction {
 		super(target, seconds);
 		this.interpolation = interpolation;
 		this.alpha = alpha;
+		this.startAlpha = target.alpha;
 	}
 
 	tick(delta: number): boolean {

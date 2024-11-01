@@ -21,6 +21,8 @@ export default class ScaleTo extends TargetedAction {
 		this.interpolation = interpolation;
 		this.x = x;
 		this.y = y;
+		this.startX = target.scale.x;
+		this.startY = target.scale.y;
 	}
 
 	tick(delta: number): boolean {

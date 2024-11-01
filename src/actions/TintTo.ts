@@ -22,6 +22,7 @@ export default class TintTo extends TargetedAction {
 		this.interpolation = interpolation;
 		this.tint = new PIXI.Color(tint);
 		this.tintableTarget = target;
+		this.startTint = new PIXI.Color(target.tint);
 	}
 
 	tick(delta: number): boolean {

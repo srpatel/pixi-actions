@@ -21,6 +21,8 @@ export default class MoveTo extends TargetedAction {
 		this.interpolation = interpolation;
 		this.x = x;
 		this.y = y;
+		this.startX = target.x;
+		this.startY = target.y;
 	}
 
 	tick(delta: number): boolean {
